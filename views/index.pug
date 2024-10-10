@@ -1,8 +1,46 @@
 doctype html
-link(rel='stylesheet' href='css/style.css')
+
+<!--for styling-->
+    //link(rel='stylesheet' href='css/style.css')
 
 head
-    title My First Full Stack
+    title My First Full Stack Application
 body
+<!--also for styling-->
+    //img(src="../img/example1.png",width=1439,id="img1")
+    //img(src="../img/example1.png",width=1439,id="img2")
+    //img(src="../img/example1.png",width=1439,id="img3")
+
     h1 Simple TODO APP
-    p TODO: Complete the app!
+    p Add your TODO items here
+
+    form(action="/", method="post")
+        label(for="todo") TODO:
+        input(type="text",name="todo",id="todo")
+        br
+        input(type="submit",value="Add")
+
+    hr
+
+    form(action="/clear",method="post")
+        input(type="submit",value="Clear List")
+    hr
+
+    h2 My TODO List
+    div(id="list-wrapper")
+    -if(tasks.length != 0)
+        ul
+        - for (let i = 0; i < tasks.length; i++)
+            li= tasks[i].id + " " + tasks[i].task
+                form(action="/delete", method="post")
+                    input(type="hidden", name="id" value=tasks[i].id)
+                    input(type="submit", value="Delete")
+    -else
+        p There is always something you need to do. Stop lying to yourself.
+
+    hr
+    p The styling is so bad and potentially harmful to those with epilepsy that I am going to have you uncomment anything marked in the pug file that relates to the styling to turn it on for the ugliness extra credit. You can look and see it is all there, but it is so bad I don't display it by default.
+<!--for uncommenting practice-->
+    //p Uncomment me!
+<!--for styling-->
+    //p I told you.
